@@ -1,0 +1,1 @@
+ValidWordAbbreviation.test()
