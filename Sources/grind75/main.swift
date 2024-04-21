@@ -1,1 +1,1 @@
-ValidWordAbbreviation.test()
+MinRemoveToMakeValid.test()
