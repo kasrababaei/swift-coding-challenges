@@ -6,9 +6,7 @@ import PackageDescription
 let package = Package(
     name: "grind75",
     products: [
-        .library(
-            name: "grind75",
-            targets: ["grind75"]),
+        .executable(name: "grind75", targets: ["grind75"])
     ],
     targets: [.executableTarget(name: "grind75")]
 )
