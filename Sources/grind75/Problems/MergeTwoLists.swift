@@ -1,20 +1,4 @@
 enum MergeTwoLists {
-    /*
-    // Recursive solution:
-    // Space complexity is O(m + n) where m is the length of first list and n is the length of the second list
-    // This is because the stack needs to hold each iteration in memory
-    static func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
-        guard let list1 else { return list2 }
-        guard let list2 else { return list1 }
-        
-        if list1.val < list2.val {
-            return ListNode(list1.val, ListNode(list2.val, mergeTwoLists(list1.next, list2.next)))
-        } else {
-            return ListNode(list2.val, ListNode(list1.val, mergeTwoLists(list1.next, list2.next)))
-        }
-    }
-    */
-    
     // Space complexity is O(1) since it only needs to keep the head and tail in the stack.
     static func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
         if list1 == nil {
@@ -81,4 +65,21 @@ enum MergeTwoLists {
         let expect: [Int] = []
         return (list1, list2, expect)
     }
+    
+    /*
+    // Recursive solution:
+    // Space complexity is O(m + n) where m is the length of first list and n is the length of the second list
+    // This is because the stack needs to hold each iteration in memory
+    static func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
+        guard let list1 else { return list2 }
+        guard let list2 else { return list1 }
+        
+        if list1.val < list2.val {
+            return ListNode(list1.val, ListNode(list2.val, mergeTwoLists(list1.next, list2.next)))
+        } else {
+            return ListNode(list2.val, ListNode(list1.val, mergeTwoLists(list1.next, list2.next)))
+        }
+    }
+    */
+    
 }

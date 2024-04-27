@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "grind75",
+    platforms: [.macCatalyst(.v17)],
     products: [
         .executable(name: "grind75", targets: ["grind75"])
     ],
