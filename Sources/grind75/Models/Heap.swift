@@ -32,7 +32,7 @@ struct Heap<T: Comparable> {
         buildHeap()
     }
     
-    func peak() -> T? {
+    func peek() -> T? {
         storage.first
     }
     

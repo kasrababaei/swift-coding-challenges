@@ -9,5 +9,8 @@ let package = Package(
     products: [
         .executable(name: "grind75", targets: ["grind75"])
     ],
-    targets: [.executableTarget(name: "grind75")]
+    targets: [
+        .executableTarget(name: "grind75"),
+        .testTarget(name: "grind75-Tests", dependencies: ["grind75"])
+    ]
 )

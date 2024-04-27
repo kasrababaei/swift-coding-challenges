@@ -56,7 +56,7 @@ class NumberOfBacklogOrders {
     }
     
     private func matchBuyOrder(_ buyOrder: Node) {
-        if let sellOrder = sellOrders.peak(), sellOrder <= buyOrder {
+        if let sellOrder = sellOrders.peek(), sellOrder <= buyOrder {
             sellOrders.remove()
             
             if sellOrder.amount > buyOrder.amount {
@@ -79,7 +79,7 @@ class NumberOfBacklogOrders {
     }
     
     private func matchSellOrder(_ sellOrder: Node) {
-        if let buyOrder = buyOrders.peak(), buyOrder >= sellOrder {
+        if let buyOrder = buyOrders.peek(), buyOrder >= sellOrder {
             buyOrders.remove()
             
             if buyOrder.amount > sellOrder.amount {
