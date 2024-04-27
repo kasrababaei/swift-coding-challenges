@@ -1,3 +1,4 @@
+import Foundation
 import os.log
 
 private let logger = Logger(subsystem: "Heap", category: "Grind75")
@@ -58,6 +59,13 @@ struct Heap<T: Comparable> {
     
     func reduce<R>(result: R, updateAccumulatingResult: (inout R, T) throws -> ()) rethrows -> R {
         try storage.reduce(into: result, updateAccumulatingResult)
+    }
+    
+    func level(ofValue value: T) -> Int? {
+        guard !storage.isEmpty else { return nil }
+        guard let index = storage.firstIndex(of: value) else { return nil }
+        
+        return Int(floor(log2(Double(index) + 1)))
     }
     
     private mutating func buildHeap() {

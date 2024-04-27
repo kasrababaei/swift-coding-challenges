@@ -81,4 +81,14 @@ final class HeapTests: XCTestCase {
         
         XCTAssertEqual(output, expected)
     }
+    
+    func testLevel() {
+        let input = [5, 10, 8, 12, 11, 14, 13, 22, 43]
+        let heap = Heap(input, sort: <)
+        
+        XCTAssertEqual(heap.level(ofValue: 5), 0)
+        XCTAssertEqual(heap.level(ofValue: 8), 1)
+        XCTAssertEqual(heap.level(ofValue: 12), 2)
+        XCTAssertEqual(heap.level(ofValue: 22), 3)
+    }
 }
