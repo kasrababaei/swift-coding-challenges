@@ -68,6 +68,51 @@ struct Heap<T: Comparable> {
         return Int(floor(log2(Double(index) + 1)))
     }
     
+    @discardableResult
+    func preOrderTraversal(index: Int = 0) -> [T] {
+        guard !isEmpty else { return [] }
+        guard index < storage.count else { return [] }
+        
+        let leftIndex = leftChild(index: index)
+        let rightIndex = rightChild(index: index)
+        
+        var nodes: [T] = [storage[index]]
+        
+        if leftIndex < storage.count {
+            nodes.append(storage[leftIndex])
+        }
+        
+        if rightIndex < storage.count {
+            nodes.append(storage[rightIndex])
+        }
+        
+        return nodes + preOrderTraversal(index: index + 1).dropFirst()
+    }
+    
+    func bfs(index: Int = 0) -> [T] {
+        guard !isEmpty, index < storage.count else { return [] }
+        
+        var nodes: [T] = [storage[index]]
+        var _index = index
+        
+        while _index < storage.count {
+            let leftIndex = leftChild(index: _index)
+            let rightIndex = rightChild(index: _index)
+            
+            if leftIndex < storage.count {
+                nodes.append(storage[leftIndex])
+            }
+            
+            if rightIndex < storage.count {
+                nodes.append(storage[rightIndex])
+            }
+            
+            _index += 1
+        }
+        
+        return nodes
+    }
+    
     private mutating func buildHeap() {
         for i in stride(from: storage.count / 2 - 1, through: 0, by: -1) {
             shiftDown(index: i)

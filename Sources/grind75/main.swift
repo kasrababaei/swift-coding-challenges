@@ -1,1 +1,2 @@
-NumberOfBacklogOrders().test()
+SimpleCalculator.test()
+
