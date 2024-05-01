@@ -1,2 +1,2 @@
-SimpleCalculator.test()
+BuildingWithOceanView.test()
 
