@@ -1,10 +1,3 @@
-//
-//  BuildingWithOceanView.swift
-//  
-//
-//  Created by Kasra Babaei on 2024-05-01.
-//
-
 import XCTest
 @testable import grind75
 
@@ -21,6 +14,11 @@ final class BuildingWithOceanViewTests: XCTestCase {
     
     func testThree() {
         let result = BuildingWithOceanView.findBuildings([1,3,2,4])
+        XCTAssertEqual(result, [3])
+    }
+    
+    func testFour() {
+        let result = BuildingWithOceanView.findBuildings([2, 2, 2, 2])
         XCTAssertEqual(result, [3])
     }
 }
