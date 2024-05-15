@@ -1,1 +1,1 @@
-
+SimpleCalculator.test()
