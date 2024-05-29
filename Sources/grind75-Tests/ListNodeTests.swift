@@ -1,10 +1,3 @@
-//
-//  ListNodeTests.swift
-//  
-//
-//  Created by Kasra Babaei on 2024-05-04.
-//
-
 import XCTest
 @testable import grind75
 
