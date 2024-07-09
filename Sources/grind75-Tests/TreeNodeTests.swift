@@ -15,6 +15,6 @@ final class TreeNodeTests: XCTestCase {
     func testResultBuilder() {
         let node = TreeNode(3, 5, 1, 6, 2, 0, 8, nil, nil, 7, 4)
         
-        XCTAssertEqual(node.bfs(node: node), [3, 5, 1, 6, 2, 0, 8, 7, 4])
+        XCTAssertEqual(node.bfs(node), [3, 5, 1, 6, 2, 0, 8, 7, 4])
     }
 }
