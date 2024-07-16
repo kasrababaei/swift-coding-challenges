@@ -1,14 +1,11 @@
 import Foundation
-import os.log
-
-private let logger = Logger(subsystem: "Heap", category: "Grind75")
 
 extension Heap {
     func log() {
         let indices = storage.indices.map { "\($0  )".prefix(3) }
         let values = storage.map { "\($0  )".prefix(3) }
-        logger.debug("\(indices)")
-        logger.debug("\(values)")
+        Logger.debug(message: "\(indices)")
+        Logger.debug(message: "\(values)")
     }
 }
 

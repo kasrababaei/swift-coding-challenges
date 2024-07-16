@@ -1,8 +1,6 @@
 import Foundation
 import os.log
 
-private let logger = Logger(subsystem: "NumberOfBacklogOrders", category: "Grind75")
-
 extension NumberOfBacklogOrders {
     func test() {
         [
