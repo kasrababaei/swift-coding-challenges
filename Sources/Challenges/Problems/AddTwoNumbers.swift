@@ -28,7 +28,7 @@
  
  */
 enum AddTwoNumbers {
-    static var carryOver = 0
+    nonisolated(unsafe) static var carryOver = 0
     
     static func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
         if l1 == nil && l2 == nil && carryOver == 0 { return nil }

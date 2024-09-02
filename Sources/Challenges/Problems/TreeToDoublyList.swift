@@ -59,8 +59,8 @@ enum TreeToDoublyList {
         }
     }
     
-    private static var head: Node? = nil
-    private static var tail: Node? = nil
+    private nonisolated(unsafe) static var head: Node? = nil
+    private nonisolated(unsafe) static var tail: Node? = nil
     
     static func treeToDoublyList(_ root: Node?) -> Node? {
         traverse(root)

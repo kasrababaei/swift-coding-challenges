@@ -1,5 +1,5 @@
 import XCTest
-@testable import grind75
+@testable import Challenges
 
 final class HeapTests: XCTestCase {
     func testMinMaxHeapOrdering() {

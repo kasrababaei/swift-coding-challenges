@@ -1,5 +1,5 @@
 import XCTest
-@testable import grind75
+@testable import Challenges
 
 final class MergeSortedArrayTests: XCTestCase {
     func testOne() {
