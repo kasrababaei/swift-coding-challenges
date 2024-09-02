@@ -12,7 +12,7 @@ final class OnlyUniqueCharactersTests: XCTestCase {
         ]
         
         for string in strings {
-            XCTAssertTrue(OnlyUniqueCharacters.isUnique(string))
+            XCTAssertTrue(OnlyUniqueCharacters.isUnique(string), "'\(string)'")
         }
     }
     
@@ -26,7 +26,7 @@ final class OnlyUniqueCharactersTests: XCTestCase {
         ]
         
         for string in strings {
-            XCTAssertFalse(OnlyUniqueCharacters.isUnique(string))
+            XCTAssertFalse(OnlyUniqueCharacters.isUnique(string), "'\(string)'")
         }
     }
 }
