@@ -1,7 +1,7 @@
 import Testing
 @testable import Challenges
 
-struct Test {
+struct LinkedListCycleTests {
     @Test func hasCycleOne() async throws {
         // head = [3, 2, 0, -4], pos = 1
         let four = ListNode(-4)
