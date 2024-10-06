@@ -78,6 +78,18 @@ class ListNode {
         return current?.val ?? -1
     }
     
+    func node(at index: Int) -> ListNode? {
+        guard index > 0 else { return nil }
+        
+        var current: ListNode? = self
+        
+        for _ in 0..<index {
+            current = current?.next
+        }
+        
+        return current
+    }
+    
     func addAtIndex(_ index: Int, _ val: Int) {
         var previous: ListNode? = self
         var current: ListNode? = self

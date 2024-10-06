@@ -31,9 +31,9 @@ import Foundation
 enum LinkedListCycle {
     static func hasCycle(_ head: ListNode?) -> Bool {
         var slow = head
-        var fast = head?.next
+        var fast = head
         
-        while slow != nil, fast != nil {
+        while slow != nil, fast?.next != nil {
             slow = slow?.next
             fast = fast?.next?.next
             
