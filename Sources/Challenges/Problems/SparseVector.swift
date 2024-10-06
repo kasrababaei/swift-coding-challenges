@@ -18,19 +18,8 @@ class SparseVector {
     
     // Return the dotProduct of two sparse vectors
     func dotProduct(_ vec: SparseVector) -> Int {
-        let firstVector: [Int: Int]
-        let secondVector: [Int: Int]
-        
-        if nums.endIndex < vec.nums.endIndex {
-            firstVector = nums
-            secondVector = vec.nums
-        } else {
-            firstVector = vec.nums
-            secondVector = nums
-        }
-        
-        return firstVector.reduce(into: 0) { result, keyValue in
-            if let rhs = secondVector[keyValue.key] {
+        nums.reduce(into: 0) { result, keyValue in
+            if let rhs = vec.nums[keyValue.key] {
                 result += keyValue.1 * rhs
             }
         }
