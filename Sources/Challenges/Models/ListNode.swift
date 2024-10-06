@@ -1,8 +1,9 @@
 class ListNode {
-    var val: Int
+    var val: Int?
     var next: ListNode?
+    
     init() {
-        self.val = 0
+        self.val = nil
         self.next = nil
     }
     
@@ -32,8 +33,8 @@ class ListNode {
             }
         }
         
-        self.val = head!.val
-        self.next = head!.next
+        self.val = head?.val
+        self.next = head?.next
     }
     
     func flatten() -> [Int] {
@@ -41,10 +42,66 @@ class ListNode {
         var result: [Int] = []
         
         while node != nil {
-            result.append(node!.val)
+            guard let val = node?.val else { return result }
+            result.append(val)
             node = node?.next
         }
         
         return result
+    }
+    
+    func addAtHead(_ val: Int) {
+        if let oldValue = self.val {
+            let oldHead = ListNode(oldValue, next)
+            self.next = oldHead
+        }
+        self.val = val
+    }
+    
+    func addAtTail(_ val: Int) {
+        var tail = self
+        
+        while tail.next != nil {
+            tail = tail.next!
+        }
+        
+        tail.next = ListNode(val)
+    }
+    
+    func get(_ index: Int) -> Int {
+        var current: ListNode? = self
+        
+        for _ in 0..<index {
+            current = current?.next
+        }
+        
+        return current?.val ?? -1
+    }
+    
+    func addAtIndex(_ index: Int, _ val: Int) {
+        var previous: ListNode? = self
+        var current: ListNode? = self
+        
+        for _ in 0..<index {
+            previous = current
+            current = current?.next
+            guard current != nil else {
+                return
+            }
+        }
+        
+        previous?.next = ListNode(val, current)
+    }
+    
+    func deleteAtIndex(_ index: Int) {
+        var current: ListNode? = self
+        var previous = current
+        
+        for _ in 0..<index {
+            previous = current
+            current = current?.next
+        }
+        
+        previous?.next = current?.next
     }
 }

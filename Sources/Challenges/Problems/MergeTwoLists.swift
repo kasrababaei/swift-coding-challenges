@@ -15,7 +15,7 @@ enum MergeTwoLists {
         var list2 = list2
         
         while(list1 != nil && list2 != nil) {
-            if list1!.val < list2!.val {
+            if list1!.val! < list2!.val! {
                 tail.next = list1!
                 list1 = list1!.next
             } else {
@@ -49,7 +49,7 @@ enum MergeTwoLists {
             return []
         }
         
-        return [node.val] + flatten(node: node.next)
+        return [node.val!] + flatten(node: node.next)
     }
     
     static var sample1: (ListNode, ListNode, [Int]) {

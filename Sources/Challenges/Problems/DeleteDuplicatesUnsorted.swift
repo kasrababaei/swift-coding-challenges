@@ -27,8 +27,8 @@ enum DeleteDuplicatesUnsorted {
         var next = head
         
         while next != nil {
-            values.append(next!.val)
-            set.add(next!.val)
+            values.append(next!.val!)
+            set.add(next!.val!)
             next = next?.next
         }
         
@@ -53,12 +53,12 @@ enum DeleteDuplicatesUnsorted {
             
             var temp = head
             while temp != nil {
-                set.add(temp!.val)
+                set.add(temp!.val!)
                 temp = temp?.next
             }
             
             while current != nil {
-                if set.count(for: current!.val) > 1 {
+                if set.count(for: current!.val!) > 1 {
                     previous?.next = current?.next
                 } else {
                     previous = current
