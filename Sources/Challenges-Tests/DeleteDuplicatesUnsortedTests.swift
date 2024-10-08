@@ -2,7 +2,7 @@ import Testing
 @testable import Challenges
 
 struct DeleteDuplicatesUnsortedTests {
-  @Test func testOne() async throws {
+  @Test func testOne() {
     let tail = ListNode(2)
     let three = ListNode(3, tail)
     let two = ListNode(2, three)
@@ -13,7 +13,7 @@ struct DeleteDuplicatesUnsortedTests {
     #expect(DeleteDuplicatesUnsorted.WithDummyNode.deleteDuplicatesUnsorted(head)?.flatten() == result.flatten())
   }
     
-  @Test func testTwo() async throws {
+  @Test func testTwo() {
     let tail = ListNode(2)
     let one = ListNode(1, tail)
     let onePrime = ListNode(1, one)
@@ -23,7 +23,7 @@ struct DeleteDuplicatesUnsortedTests {
     #expect(DeleteDuplicatesUnsorted.WithDummyNode.deleteDuplicatesUnsorted(head)?.flatten() == nil)
   }
     
-  @Test func testThree() async throws {
+  @Test func testThree() {
     // [3,2,2,1,3,2,4]
     let tail = ListNode(4)
     let thirdTwo = ListNode(2, tail)

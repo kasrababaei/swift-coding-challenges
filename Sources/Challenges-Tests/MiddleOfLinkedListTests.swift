@@ -2,7 +2,7 @@ import Testing
 @testable import Challenges
 
 struct MiddleOfLinkedListTests {
-  @Test func odd() async throws {
+  @Test func odd() {
     let five = ListNode(5)
     let four = ListNode(4, five)
     let three = ListNode(3, four)
@@ -12,7 +12,7 @@ struct MiddleOfLinkedListTests {
     #expect(MiddleOfLinkedList.middleNode(one) === three)
   }
     
-  @Test func even() async throws {
+  @Test func even() {
     let six = ListNode(6)
     let five = ListNode(5, six)
     let four = ListNode(4, five)

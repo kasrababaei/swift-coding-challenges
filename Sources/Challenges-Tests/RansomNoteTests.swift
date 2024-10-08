@@ -2,7 +2,7 @@ import Testing
 @testable import Challenges
 
 struct RansomNoteTests {
-  @Test func success() async throws {
+  @Test func success() {
     #expect(RansomNote.canConstruct("apple", "baplnaanpae") == true)
     #expect(RansomNote.canConstruct("banana", String("banana".shuffled())) == true)
     #expect(RansomNote.canConstruct("a", "a") == true)
@@ -10,7 +10,7 @@ struct RansomNoteTests {
     #expect(RansomNote.canConstruct("aa", "aa") == true)
   }
     
-  @Test func failure() async throws {
+  @Test func failure() {
     #expect(RansomNote.canConstruct("apple", "balnaanpae") == false)
     #expect(RansomNote.canConstruct("banana", String("baana".shuffled())) == false)
     #expect(RansomNote.canConstruct("a", "b") == false)
