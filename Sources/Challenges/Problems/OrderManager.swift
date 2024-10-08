@@ -33,97 +33,97 @@ import Foundation
 
 // DO NOT CHANGE THE EDIT THIS TYPE
 class NetworkManager: @unchecked Sendable {
-    static let shared = NetworkManager()
+  static let shared = NetworkManager()
     
-    /// THIS CLOSURE IS ONLY FOR TESTING
-    var didReceiveOrder: ((Order) -> Void)?
+  /// THIS CLOSURE IS ONLY FOR TESTING
+  var didReceiveOrder: ((Order) -> Void)?
     
-    func sendOrder(
-        order: Order,
-        success: @Sendable @escaping () -> Void,
-        failure: @Sendable @escaping () -> Void
-    ) {
-        didReceiveOrder?(order)
-        let requestDuration = Double.random(in: 0...0.3)
+  func sendOrder(
+    order: Order,
+    success: @Sendable @escaping () -> Void,
+    failure: @Sendable @escaping () -> Void
+  ) {
+    didReceiveOrder?(order)
+    let requestDuration = Double.random(in: 0...0.3)
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + requestDuration) {
-            let rand = Int.random(in: 0...1)
-            if rand == 0 {
-                print("success: \(order.identifier)")
-                success()
-            } else {
-                print("failure: \(order.identifier)")
-                failure()
-            }
-        }
+    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + requestDuration) {
+      let rand = Int.random(in: 0...1)
+      if rand == 0 {
+        print("success: \(order.identifier)")
+        success()
+      } else {
+        print("failure: \(order.identifier)")
+        failure()
+      }
     }
+  }
 }
 
 // DO NOT CHANGE THE EDIT THIS TYPE
 struct Order: Equatable {
-    let identifier: String
+  let identifier: String
 }
  
 final class OrderManager: @unchecked Sendable {
-    static let shared = OrderManager()
-    private init() {}
+  static let shared = OrderManager()
+  private init() {}
     
-    // CAN DEFINE INSTANCE PROPERTIES AND METHODS
-    private var head: ListNode? = nil
-    private var tail: ListNode? = nil
-    private let semaphore = DispatchSemaphore(value: 1)
+  // CAN DEFINE INSTANCE PROPERTIES AND METHODS
+  private var head: ListNode? = nil
+  private var tail: ListNode? = nil
+  private let semaphore = DispatchSemaphore(value: 1)
     
-    // DO NOT CHANGE THE SIGNATURE OF THIS METHOD BUT CAN CHANGE THE IMPLEMENTATION
-    func placeOrder(_ order: Order) {
-        if head == nil {
-            head = ListNode(order)
-            tail = head
-        } else {
-            tail?.next = ListNode(order)
-            tail = tail?.next
-        }
-        
-        processOrders()
+  // DO NOT CHANGE THE SIGNATURE OF THIS METHOD BUT CAN CHANGE THE IMPLEMENTATION
+  func placeOrder(_ order: Order) {
+    if head == nil {
+      head = ListNode(order)
+      tail = head
+    } else {
+      tail?.next = ListNode(order)
+      tail = tail?.next
     }
+        
+    processOrders()
+  }
     
-    private func processOrders() {
-        DispatchQueue.global().async { [weak self] in
-            self?.semaphore.wait()
+  private func processOrders() {
+    DispatchQueue.global().async { [weak self] in
+      self?.semaphore.wait()
             
-            if let order = self?.head?.value {
-                self?.sendOrder(order)
-                self?.head = self?.head?.next
-            }
-        }
+      if let order = self?.head?.value {
+        self?.sendOrder(order)
+        self?.head = self?.head?.next
+      }
     }
+  }
     
-    private func sendOrder(_ order: Order, tryCount: Int = 0) {
-        guard tryCount < 3 else {
-            finishedProcessingOrder(order)
-            return
-        }
+  private func sendOrder(_ order: Order, tryCount: Int = 0) {
+    guard tryCount < 3 else {
+      finishedProcessingOrder(order)
+      return
+    }
         
-        NetworkManager.shared.sendOrder(
-            order: order,
-            success: { [weak self] in self?.finishedProcessingOrder(order) },
-            failure: { [weak self] in self?.sendOrder(order, tryCount: tryCount + 1) }
-        )
-    }
+    NetworkManager.shared.sendOrder(
+      order: order,
+      success: { [weak self] in self?.finishedProcessingOrder(order) },
+      failure: { [weak self] in self?.sendOrder(order, tryCount: tryCount + 1) }
+    )
+  }
     
-    private func finishedProcessingOrder(_ order: Order) {
-        semaphore.signal()
-        processOrders()
-    }
+  private func finishedProcessingOrder(_ order: Order) {
+    semaphore.signal()
+    processOrders()
+  }
 }
 
 extension OrderManager {
-    final class ListNode: @unchecked Sendable {
-        var value: Order?
-        var next: ListNode?
+  final class ListNode: @unchecked Sendable {
+    var value: Order?
+    var next: ListNode?
         
-        init(_ value: Order? = nil, _ next: ListNode? = nil) {
-            self.value = value
-            self.next = next
-        }
+    init(_ value: Order? = nil, _ next: ListNode? = nil) {
+      self.value = value
+      self.next = next
     }
+  }
 }

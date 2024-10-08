@@ -19,21 +19,21 @@
  */
 
 enum MyPow {
-    static func myPow(_ x: Double, _ n: Int) -> Double {
-        guard x != 0 else { return 0 }
-        guard n != 0 else { return 1 }
+  static func myPow(_ x: Double, _ n: Int) -> Double {
+    guard x != 0 else { return 0 }
+    guard n != 0 else { return 1 }
         
-        var res: Double = 1
-        var absN = abs(n)
-        var base = x
-        while absN > 0 {
-            if absN % 2 == 1 {
-                res *= base
-            }
-            base *= base
-            absN /= 2
-        }
-        
-        return n < 0 ? 1 / res : res
+    var res: Double = 1
+    var absN = abs(n)
+    var base = x
+    while absN > 0 {
+      if absN % 2 == 1 {
+        res *= base
+      }
+      base *= base
+      absN /= 2
     }
+        
+    return n < 0 ? 1 / res : res
+  }
 }

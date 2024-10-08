@@ -17,7 +17,7 @@
 
  Input: nums = [3,2,1,0,4]
  Output: false
- Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which 
+ Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which
  makes it impossible to reach the last index.
  
  */
@@ -25,21 +25,21 @@
 import Foundation
 
 struct JumpGame {
-    func canJump(_ nums: [Int]) -> Bool {
-        var canJump = true
-        var requiredJumps = 1
+  func canJump(_ nums: [Int]) -> Bool {
+    var canJump = true
+    var requiredJumps = 1
         
-        for i in stride(from: nums.count - 2, through: 0, by: -1) {
-            guard (nums.count > 1) else { break }
-            if (nums[i] >= requiredJumps) {
-                canJump = true
-                requiredJumps = 1
-            } else {
-                canJump = false
-                requiredJumps += 1
-            }
-        }
-        
-        return canJump
+    for i in stride(from: nums.count - 2, through: 0, by: -1) {
+      guard (nums.count > 1) else { break }
+      if (nums[i] >= requiredJumps) {
+        canJump = true
+        requiredJumps = 1
+      } else {
+        canJump = false
+        requiredJumps += 1
+      }
     }
+        
+    return canJump
+  }
 }

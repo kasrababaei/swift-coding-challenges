@@ -6,23 +6,23 @@
  */
 
 enum StringCompression {
-    static func stringCompression(_ original: String) -> String {
-        guard !original.isEmpty else { return original }
+  static func stringCompression(_ original: String) -> String {
+    guard !original.isEmpty else { return original }
         
-        var count = 0
-        var compressed = String(original[original.startIndex])
+    var count = 0
+    var compressed = String(original[original.startIndex])
         
-        for char in original {
-            if char != compressed.last {
-                compressed = "\(compressed)\(count)\(char)"
-                count = 1
-            } else {
-                count += 1
-            }
-        }
-        
-        compressed += "\(count)"
-        
-        return compressed.count < original.count ? compressed : original
+    for char in original {
+      if char != compressed.last {
+        compressed = "\(compressed)\(count)\(char)"
+        count = 1
+      } else {
+        count += 1
+      }
     }
+        
+    compressed += "\(count)"
+        
+    return compressed.count < original.count ? compressed : original
+  }
 }

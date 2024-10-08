@@ -13,75 +13,75 @@
  */
 
 enum TreeToDoublyList {
-    class Node {
-        init(_ val: Int, _ left: Node? = nil, _ right: Node? = nil ) {
-            self.val = val
-            self.left = left
-            self.right = right
-        }
-        
-        var val: Int
-        var left: Node?
-        var right: Node?
-        
-        init(_ val: Int) {
-            self.val = val
-            self.left = nil
-            self.right = nil
-        }
-        
-        init(@NodeBuilder values: () -> Node) {
-            let node = values()
-            self.val = node.val
-            self.right = node.right
-        }
+  class Node {
+    init(_ val: Int, _ left: Node? = nil, _ right: Node? = nil ) {
+      self.val = val
+      self.left = left
+      self.right = right
     }
+        
+    var val: Int
+    var left: Node?
+    var right: Node?
+        
+    init(_ val: Int) {
+      self.val = val
+      self.left = nil
+      self.right = nil
+    }
+        
+    init(@NodeBuilder values: () -> Node) {
+      let node = values()
+      self.val = node.val
+      self.right = node.right
+    }
+  }
     
-    @resultBuilder
-    struct NodeBuilder {
-        static func buildBlock(_ components: Int...) -> Node {
-            var head: Node? = nil
-            var tail: Node? = nil
+  @resultBuilder
+  struct NodeBuilder {
+    static func buildBlock(_ components: Int...) -> Node {
+      var head: Node? = nil
+      var tail: Node? = nil
             
-            for value in components {
-                let node = Node(value)
+      for value in components {
+        let node = Node(value)
                 
-                if head == nil {
-                    head = node
-                    tail = node
-                } else {
-                    tail?.right = node
-                    tail = node
-                }
-            }
-            
-            return head!
-        }
-    }
-    
-    private nonisolated(unsafe) static var head: Node? = nil
-    private nonisolated(unsafe) static var tail: Node? = nil
-    
-    static func treeToDoublyList(_ root: Node?) -> Node? {
-        traverse(root)
-        
-        head?.left = tail
-        tail?.right = head
-        
-        return head
-    }
-    
-    static func traverse(_ node: Node?) {
-        guard let node else { return }
-        
-        traverse(node.left)
         if head == nil {
-            head = node
+          head = node
+          tail = node
         } else {
-            node.left = tail
-            tail?.right = node
+          tail?.right = node
+          tail = node
         }
-        tail = node
-        traverse(node.right)
+      }
+            
+      return head!
     }
+  }
+    
+  private nonisolated(unsafe) static var head: Node? = nil
+  private nonisolated(unsafe) static var tail: Node? = nil
+    
+  static func treeToDoublyList(_ root: Node?) -> Node? {
+    traverse(root)
+        
+    head?.left = tail
+    tail?.right = head
+        
+    return head
+  }
+    
+  static func traverse(_ node: Node?) {
+    guard let node else { return }
+        
+    traverse(node.left)
+    if head == nil {
+      head = node
+    } else {
+      node.left = tail
+      tail?.right = node
+    }
+    tail = node
+    traverse(node.right)
+  }
 }

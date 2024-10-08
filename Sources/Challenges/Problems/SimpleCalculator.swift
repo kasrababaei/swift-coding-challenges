@@ -35,53 +35,53 @@
 import Foundation
 
 class SimpleCalculator {
-    func calculate(_ s: String) -> Int {
-        var sum = 0
-        var lValue = 0
-        var rValue = 0
-        var operation: Character = "+"
+  func calculate(_ s: String) -> Int {
+    var sum = 0
+    var lValue = 0
+    var rValue = 0
+    var operation: Character = "+"
         
-        for char in s+"+" where !char.isNewline && !char.isWhitespace {
-            if let digit = char.wholeNumberValue {
-                rValue = rValue * 10 + digit
-            } else {
-                switch operation {
-                case "*":
-                    lValue = lValue * rValue
-                case "/":
-                    lValue = lValue / rValue
-                case "+":
-                    sum += lValue
-                    lValue = rValue
-                default:
-                    sum += lValue
-                    lValue = -rValue
-                }
+    for char in s + "+" where !char.isNewline && !char.isWhitespace {
+      if let digit = char.wholeNumberValue {
+        rValue = rValue * 10 + digit
+      } else {
+        switch operation {
+        case "*":
+          lValue = lValue * rValue
+        case "/":
+          lValue = lValue / rValue
+        case "+":
+          sum += lValue
+          lValue = rValue
+        default:
+          sum += lValue
+          lValue = -rValue
+        }
                 
-                rValue = 0
-                operation = char
-            }
-        }
+        rValue = 0
+        operation = char
+      }
+    }
         
-        return sum + lValue
-    }
+    return sum + lValue
+  }
     
-    static func test() {
-        [
-            ("3+2*2", 7),
-            (" 3/2 ", 1),
-            (" 3+5 / 2 ", 5),
-            (" \n3+5 / 2 ", 5),
-            ("2*3*4", 24),
-            ("1+2*5/3+6/4*2", 6)
-        ].forEach { pair in
-            let result = SimpleCalculator().calculate(pair.0)
+  static func test() {
+    [
+      ("3+2*2", 7),
+      (" 3/2 ", 1),
+      (" 3+5 / 2 ", 5),
+      (" \n3+5 / 2 ", 5),
+      ("2*3*4", 24),
+      ("1+2*5/3+6/4*2", 6)
+    ].forEach { pair in
+      let result = SimpleCalculator().calculate(pair.0)
             
-            if result == pair.1 {
-                print(true)
-            } else {
-                print("Expected \(pair.1) but got \(result)")
-            }
-        }
+      if result == pair.1 {
+        print(true)
+      } else {
+        print("Expected \(pair.1) but got \(result)")
+      }
     }
+  }
 }

@@ -23,18 +23,18 @@
  */
 
 enum RansomNote {
-    static func canConstruct(_ ransomNote: String, _ magazine: String) -> Bool {
-        var array = Array(repeating: 0, count: Int("z".utf8CString[0]) + 1)
+  static func canConstruct(_ ransomNote: String, _ magazine: String) -> Bool {
+    var array = Array(repeating: 0, count: Int("z".utf8CString[0]) + 1)
         
-        for char in magazine.utf8CString {
-            array[Int(char)] += 1
-        }
-        
-        for char in ransomNote.utf8CString {
-            guard array[Int(char)] != 0 else { return false }
-            array[Int(char)] -= 1
-        }
-        
-        return true
+    for char in magazine.utf8CString {
+      array[Int(char)] += 1
     }
+        
+    for char in ransomNote.utf8CString {
+      guard array[Int(char)] != 0 else { return false }
+      array[Int(char)] -= 1
+    }
+        
+    return true
+  }
 }

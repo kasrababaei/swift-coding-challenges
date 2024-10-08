@@ -27,37 +27,37 @@ import Foundation
  */
 
 class MovingAverage {
-    let size: Int
-    var queue: [Int] = []
-    var sum = 0
-    var headIndex = 0
+  let size: Int
+  var queue: [Int] = []
+  var sum = 0
+  var headIndex = 0
     
-    init(_ size: Int) {
-        self.size = size
-    }
+  init(_ size: Int) {
+    self.size = size
+  }
     
-    func next(_ val: Int) -> Double {
-        queue.append(val)
+  func next(_ val: Int) -> Double {
+    queue.append(val)
         
-        if queue.count > size {
-            headIndex  = queue.endIndex - 1 - size
-            sum -= queue[headIndex]
-            sum += val
-        } else {
-            sum += val
-        }
-        return Double(sum) / Double(min(queue.count, size))
+    if queue.count > size {
+      headIndex  = queue.endIndex - 1 - size
+      sum -= queue[headIndex]
+      sum += val
+    } else {
+      sum += val
     }
+    return Double(sum) / Double(min(queue.count, size))
+  }
     
-    func next(val: Int) -> Double {
-        queue.append(val)
+  func next(val: Int) -> Double {
+    queue.append(val)
         
-        if queue.count > size {
-            queue.removeFirst(queue.endIndex - size)
-        }
-        
-        return Double(queue.reduce(into: 0) { $0 += $1 }) / Double(min(queue.count, size))
+    if queue.count > size {
+      queue.removeFirst(queue.endIndex - size)
     }
+        
+    return Double(queue.reduce(into: 0) { $0 += $1 }) / Double(min(queue.count, size))
+  }
 }
 
 /**

@@ -7,21 +7,21 @@
 // Unicode v6 has 154,998 characters
 
 enum OnlyUniqueCharacters {
-    static func isUnique(_ string: String) -> Bool {
-        guard string.count <= 128 else {
-            return false
-        }
-        
-        var array = Array(repeating: false, count: 128)
-        
-        for char in string {
-            let asciiIndex = Int(char.asciiValue!)
-            guard array[asciiIndex] == false else {
-                return false
-            }
-            array[asciiIndex] = true
-        }
-        
-        return true
+  static func isUnique(_ string: String) -> Bool {
+    guard string.count <= 128 else {
+      return false
     }
+        
+    var array = Array(repeating: false, count: 128)
+        
+    for char in string {
+      let asciiIndex = Int(char.asciiValue!)
+      guard array[asciiIndex] == false else {
+        return false
+      }
+      array[asciiIndex] = true
+    }
+        
+    return true
+  }
 }

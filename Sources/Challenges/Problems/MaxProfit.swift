@@ -21,22 +21,22 @@
  */
 
 enum MaxProfit {
-    static func maxProfit(_ prices: [Int]) -> Int {
-        guard prices.count > 1 else {
-            return 0
-        }
-        
-        var min = Int.max
-        var profit = 0
-        
-        for value in prices {
-            if value < min {
-                min = value
-            } else if value - min > profit {
-                profit = value - min
-            }
-        }
-        
-        return profit
+  static func maxProfit(_ prices: [Int]) -> Int {
+    guard prices.count > 1 else {
+      return 0
     }
+        
+    var min = Int.max
+    var profit = 0
+        
+    for value in prices {
+      if value < min {
+        min = value
+      } else if value - min > profit {
+        profit = value - min
+      }
+    }
+        
+    return profit
+  }
 }

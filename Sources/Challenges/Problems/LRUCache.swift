@@ -42,83 +42,83 @@
  */
 
 class LRUCache {
-    var cache: [Int: Node] = [:]
-    let capacity: Int
-    var head: Node?
-    var tail: Node?
+  var cache: [Int: Node] = [:]
+  let capacity: Int
+  var head: Node?
+  var tail: Node?
     
-    init(_ capacity: Int) {
-        self.capacity = capacity
-        self.head = Node(0, 0)
-        self.tail = Node(0, 0)
-        self.head?.next = self.tail
-        self.tail?.prev = self.head
+  init(_ capacity: Int) {
+    self.capacity = capacity
+    self.head = Node(0, 0)
+    self.tail = Node(0, 0)
+    head?.next = tail
+    tail?.prev = head
+  }
+    
+  func get(_ key: Int) -> Int {
+    if let node = cache[key] {
+      moveToHead(node)
+      return node.val
     }
+    return -1
+  }
     
-    func get(_ key: Int) -> Int {
-        if let node = cache[key] {
-            moveToHead(node)
-            return node.val
-        }
-        return -1
-    }
-    
-    func put(_ key: Int, _ value: Int) {
-        if let node = cache[key] {
-            node.val = value
-            moveToHead(node)
-        } else {
-            let node = Node(key, value)
-            cache[key] = node
-            addNode(node)
+  func put(_ key: Int, _ value: Int) {
+    if let node = cache[key] {
+      node.val = value
+      moveToHead(node)
+    } else {
+      let node = Node(key, value)
+      cache[key] = node
+      addNode(node)
             
-            if cache.count > capacity {
-                if let tail = popTail() {
-                    cache.removeValue(forKey: tail.key)
-                }
-            }
+      if cache.count > capacity {
+        if let tail = popTail() {
+          cache.removeValue(forKey: tail.key)
         }
+      }
     }
+  }
     
-    func moveToHead(_ node: Node) {
-        removeNode(node)
-        addNode(node)
-    }
+  func moveToHead(_ node: Node) {
+    removeNode(node)
+    addNode(node)
+  }
     
-    func removeNode(_ node: Node) {
-        let prev = node.prev
-        let next = node.next
+  func removeNode(_ node: Node) {
+    let prev = node.prev
+    let next = node.next
         
-        prev?.next = next
-        next?.prev = prev
-    }
+    prev?.next = next
+    next?.prev = prev
+  }
     
-    func addNode(_ node: Node) {
-        node.next = head?.next
-        node.prev = head
+  func addNode(_ node: Node) {
+    node.next = head?.next
+    node.prev = head
         
-        head?.next?.prev = node
-        head?.next = node
-    }
+    head?.next?.prev = node
+    head?.next = node
+  }
     
-    func popTail() -> Node? {
-        if let _tail = tail?.prev {
-            removeNode(_tail)
-            return _tail
-        }
-        
-        return nil
+  func popTail() -> Node? {
+    if let _tail = tail?.prev {
+      removeNode(_tail)
+      return _tail
     }
+        
+    return nil
+  }
 }
 
 class Node {
-    var key: Int
-    var val: Int
-    var prev: Node?
-    var next: Node?
+  var key: Int
+  var val: Int
+  var prev: Node?
+  var next: Node?
     
-    init(_ key: Int, _ val: Int) {
-        self.key = key
-        self.val = val
-    }
+  init(_ key: Int, _ val: Int) {
+    self.key = key
+    self.val = val
+  }
 }

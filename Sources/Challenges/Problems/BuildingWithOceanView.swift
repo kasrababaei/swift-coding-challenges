@@ -30,22 +30,22 @@
  */
 
 enum BuildingWithOceanView {
-    static func findBuildings(_ heights: [Int]) -> [Int] {
-        guard let last = heights.last else { return [] }
+  static func findBuildings(_ heights: [Int]) -> [Int] {
+    guard let last = heights.last else { return [] }
         
-        var currentMaxHeight = last
-        var indicies: [Int] = [heights.endIndex - 1]
+    var currentMaxHeight = last
+    var indicies: [Int] = [heights.endIndex - 1]
         
-        for index in stride(from: heights.endIndex - 2, through: 0, by: -1) {
-            let height = heights[index]
+    for index in stride(from: heights.endIndex - 2, through: 0, by: -1) {
+      let height = heights[index]
             
-            if height > currentMaxHeight  {
-                indicies.append(index)
-            }
+      if height > currentMaxHeight  {
+        indicies.append(index)
+      }
             
-            currentMaxHeight = max(currentMaxHeight, height)
-        }
-        
-        return indicies.reversed()
+      currentMaxHeight = max(currentMaxHeight, height)
     }
+        
+    return indicies.reversed()
+  }
 }

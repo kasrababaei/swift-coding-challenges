@@ -22,21 +22,21 @@
  */
 
 class MinimumAddToMakeParenthesesValid {
-    func minAddToMakeValid(_ s: String) -> Int {
-        var matches = 0
-        var unmatches = 0
+  func minAddToMakeValid(_ s: String) -> Int {
+    var matches = 0
+    var unmatches = 0
         
-        for char in s {
-            switch char {
-            case "(":
-                matches += 1
-            case ")" where matches == 0:
-                unmatches += 1
-            default:
-                matches -= 1
-            }
-        }
-        
-        return matches + unmatches
+    for char in s {
+      switch char {
+      case "(":
+        matches += 1
+      case ")" where matches == 0:
+        unmatches += 1
+      default:
+        matches -= 1
+      }
     }
+        
+    return matches + unmatches
+  }
 }

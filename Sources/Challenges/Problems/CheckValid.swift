@@ -24,31 +24,31 @@
  */
 
 enum CheckValid {
-    static func checkValid(_ matrix: [[Int]]) -> Bool {
-        let length = matrix.count
+  static func checkValid(_ matrix: [[Int]]) -> Bool {
+    let length = matrix.count
         
-        guard !matrix.isEmpty, matrix[0].count == length else { return false }
-        guard length > 1 else { return matrix[0][0] == 1 }
+    guard !matrix.isEmpty, matrix[0].count == length else { return false }
+    guard length > 1 else { return matrix[0][0] == 1 }
         
-        let reference = Set((1...length).map { $0 })
+    let reference = Set((1...length).map { $0 })
         
-        for i in 0..<length {
-            let row = Set(matrix[i])
-            guard row.count == length else { return false }
-            guard reference.subtracting(row).isEmpty else { return false }
-        }
-        
-        for i in 0..<length {
-            var column: Set<Int> = []
-            
-            for j in 0..<length {
-                guard column.insert(matrix[j][i]).inserted else { return false }
-            }
-            
-            guard column.count == length else { return false }
-            guard reference.subtracting(column).isEmpty else { return false }
-        }
-        
-        return true
+    for i in 0..<length {
+      let row = Set(matrix[i])
+      guard row.count == length else { return false }
+      guard reference.subtracting(row).isEmpty else { return false }
     }
+        
+    for i in 0..<length {
+      var column: Set<Int> = []
+            
+      for j in 0..<length {
+        guard column.insert(matrix[j][i]).inserted else { return false }
+      }
+            
+      guard column.count == length else { return false }
+      guard reference.subtracting(column).isEmpty else { return false }
+    }
+        
+    return true
+  }
 }

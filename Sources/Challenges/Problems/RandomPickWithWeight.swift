@@ -46,21 +46,21 @@
  */
 
 class RandomPickWithWeight {
-    var indices: [Int] = []
-    init(_ w: [Int]) {
-        let sum = w.reduce(0, +)
+  var indices: [Int] = []
+  init(_ w: [Int]) {
+    let sum = w.reduce(0, +)
         
-        // oversampling based on the weight
-        for i in 0..<w.count {
-            let percentCount = Int(Double(w[i]) / Double(sum) * 100)
-            indices.append(contentsOf: Array(repeating: i, count: percentCount))
-        }
+    // oversampling based on the weight
+    for i in 0..<w.count {
+      let percentCount = Int(Double(w[i]) / Double(sum) * 100)
+      indices.append(contentsOf: Array(repeating: i, count: percentCount))
     }
+  }
     
-    func pickIndex() -> Int {
-        guard !indices.isEmpty else { return 0 }
+  func pickIndex() -> Int {
+    guard !indices.isEmpty else { return 0 }
         
-        let index = Int.random(in: 0..<indices.count)
-        return indices[index]
-    }
+    let index = Int.random(in: 0..<indices.count)
+    return indices[index]
+  }
 }

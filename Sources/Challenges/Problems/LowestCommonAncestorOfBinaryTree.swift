@@ -33,48 +33,48 @@
  */
 
 class LowestCommonAncestorOfBinaryTree {
-    class Node {
-        var val: Int
-        var left: Node?
-        var right: Node?
-        var parent: Node?
+  class Node {
+    var val: Int
+    var left: Node?
+    var right: Node?
+    var parent: Node?
         
-        init(_ val: Int) {
-            self.val = val
-            self.left = nil
-            self.right = nil
-            self.parent = nil
-        }
+    init(_ val: Int) {
+      self.val = val
+      self.left = nil
+      self.right = nil
+      self.parent = nil
     }
+  }
     
-    class Solution {
-        func lowestCommonAncestor(_ p: Node?,_ q: Node?) -> Node? {
-            let pPath = rootPath(p!)
-            let qPath = rootPath(q!)
+  class Solution {
+    func lowestCommonAncestor(_ p: Node?, _ q: Node?) -> Node? {
+      let pPath = rootPath(p!)
+      let qPath = rootPath(q!)
             
-            var index = 0
+      var index = 0
             
-            for (i, pair) in zip(pPath, qPath).enumerated() {
-                guard pair.0.val == pair.1.val else { break }
-                index = i
-            }
+      for (i, pair) in zip(pPath, qPath).enumerated() {
+        guard pair.0.val == pair.1.val else { break }
+        index = i
+      }
             
-            return pPath[index]
-        }
-        
-        func rootPath(_ node: Node) -> [Node] {
-            var path: [Node] = [node]
-            var currentNode: Node? = node
-            
-            while currentNode != nil {
-                if let parent = currentNode?.parent {
-                    path.append(parent)
-                }
-                
-                currentNode = currentNode?.parent
-            }
-            
-            return Array(path.reversed())
-        }
+      return pPath[index]
     }
+        
+    func rootPath(_ node: Node) -> [Node] {
+      var path: [Node] = [node]
+      var currentNode: Node? = node
+            
+      while currentNode != nil {
+        if let parent = currentNode?.parent {
+          path.append(parent)
+        }
+                
+        currentNode = currentNode?.parent
+      }
+            
+      return Array(path.reversed())
+    }
+  }
 }

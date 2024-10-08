@@ -2,23 +2,23 @@ import XCTest
 @testable import Challenges
 
 final class MinimumAddToMakeParenthesesValidTests: XCTestCase {
-    func testOne() {
-        let result = MinimumAddToMakeParenthesesValid().minAddToMakeValid("())")
-        XCTAssertEqual(result, 1)
-    }
+  func testOne() {
+    let result = MinimumAddToMakeParenthesesValid().minAddToMakeValid("())")
+    XCTAssertEqual(result, 1)
+  }
     
-    func testTwo() {
-        let result = MinimumAddToMakeParenthesesValid().minAddToMakeValid("(((")
-        XCTAssertEqual(result, 3)
-    }
+  func testTwo() {
+    let result = MinimumAddToMakeParenthesesValid().minAddToMakeValid("(((")
+    XCTAssertEqual(result, 3)
+  }
     
-    func testThree() {
-        let result = MinimumAddToMakeParenthesesValid().minAddToMakeValid(")(())")
-        XCTAssertEqual(result, 1)
-    }
+  func testThree() {
+    let result = MinimumAddToMakeParenthesesValid().minAddToMakeValid(")(())")
+    XCTAssertEqual(result, 1)
+  }
     
-    func testFour() {
-        let result = MinimumAddToMakeParenthesesValid().minAddToMakeValid("()))((")
-        XCTAssertEqual(result, 4)
-    }
+  func testFour() {
+    let result = MinimumAddToMakeParenthesesValid().minAddToMakeValid("()))((")
+    XCTAssertEqual(result, 4)
+  }
 }

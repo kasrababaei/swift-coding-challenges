@@ -7,11 +7,11 @@
 // For this problem, the comparison is case sensitive and whitespace is significant.
 
 enum PermutationStrings {
-    static func isPermutation(_ a: String, _ b: String) -> Bool {
-        let a = String(a.sorted())
-        let b = String(b.sorted())
-        let result = a.localizedCompare(b)
+  static func isPermutation(_ a: String, _ b: String) -> Bool {
+    let a = String(a.sorted())
+    let b = String(b.sorted())
+    let result = a.localizedCompare(b)
         
-        return result == .orderedSame
-    }
+    return result == .orderedSame
+  }
 }

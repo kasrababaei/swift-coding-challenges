@@ -21,53 +21,53 @@
 import Foundation
 
 enum DeleteDuplicatesUnsorted {
-    static func deleteDuplicatesUnsorted(_ head: ListNode?) -> ListNode? {
-        var values: [Int] = []
-        let set = NSCountedSet()
-        var next = head
+  static func deleteDuplicatesUnsorted(_ head: ListNode?) -> ListNode? {
+    var values: [Int] = []
+    let set = NSCountedSet()
+    var next = head
         
-        while next != nil {
-            values.append(next!.val!)
-            set.add(next!.val!)
-            next = next?.next
-        }
-        
-        let head: ListNode? = ListNode(0)
-        var tail = head
-        
-        for value in values where set.count(for: value) == 1 {
-            let new = ListNode(value)
-            tail?.next = new
-            tail = new
-        }
-        
-        return head?.next
+    while next != nil {
+      values.append(next!.val!)
+      set.add(next!.val!)
+      next = next?.next
     }
+        
+    let head: ListNode? = ListNode(0)
+    var tail = head
+        
+    for value in values where set.count(for: value) == 1 {
+      let new = ListNode(value)
+      tail?.next = new
+      tail = new
+    }
+        
+    return head?.next
+  }
     
-    enum WithDummyNode {
-        static func deleteDuplicatesUnsorted(_ head: ListNode?) -> ListNode? {
-            let set = NSCountedSet()
-            let dummy = ListNode(-1, head)
-            var current = dummy.next
-            var previous: ListNode? = dummy
+  enum WithDummyNode {
+    static func deleteDuplicatesUnsorted(_ head: ListNode?) -> ListNode? {
+      let set = NSCountedSet()
+      let dummy = ListNode(-1, head)
+      var current = dummy.next
+      var previous: ListNode? = dummy
             
-            var temp = head
-            while temp != nil {
-                set.add(temp!.val!)
-                temp = temp?.next
-            }
+      var temp = head
+      while temp != nil {
+        set.add(temp!.val!)
+        temp = temp?.next
+      }
             
-            while current != nil {
-                if set.count(for: current!.val!) > 1 {
-                    previous?.next = current?.next
-                } else {
-                    previous = current
-                }
-                
-                current = current?.next
-            }
-            
-            return dummy.next
+      while current != nil {
+        if set.count(for: current!.val!) > 1 {
+          previous?.next = current?.next
+        } else {
+          previous = current
         }
+                
+        current = current?.next
+      }
+            
+      return dummy.next
     }
+  }
 }

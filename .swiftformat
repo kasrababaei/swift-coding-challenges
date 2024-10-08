@@ -1,0 +1,19 @@
+--rules indent
+--indent 2
+
+--disable fileHeader
+
+--rules redundantSelf
+--self init-only
+
+--rules sortImports
+--importgrouping testable-last
+
+--rules spaceAroundOperators
+--ranges no-space
+
+--rules trailingCommas
+--commas inline
+
+--rules trailingSpace
+--trimwhitespace nonblank-lines

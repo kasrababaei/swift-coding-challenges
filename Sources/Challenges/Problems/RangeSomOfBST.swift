@@ -20,30 +20,30 @@
  
  */
 enum RangeSomOfBST {
-    static func rangeSumBST(_ root: TreeNode?, _ low: Int, _ high: Int) -> Int {
-        let range = low...high
+  static func rangeSumBST(_ root: TreeNode?, _ low: Int, _ high: Int) -> Int {
+    let range = low...high
         
-        guard let root else { return 0 }
-        var sum = 0
-        var queue = [root]
+    guard let root else { return 0 }
+    var sum = 0
+    var queue = [root]
         
-        while !queue.isEmpty {
-            let node = queue.last!
-            queue.removeLast()
+    while !queue.isEmpty {
+      let node = queue.last!
+      queue.removeLast()
             
-            if range.contains(node.val) {
-                sum += node.val
-            }
+      if range.contains(node.val) {
+        sum += node.val
+      }
             
-            if node.val < range.upperBound, let right = node.right {
-                queue.append(right)
-            }
+      if node.val < range.upperBound, let right = node.right {
+        queue.append(right)
+      }
             
-            if node.val > range.lowerBound, let left = node.left {
-                queue.append(left)
-            }
-        }
-        
-        return sum
+      if node.val > range.lowerBound, let left = node.left {
+        queue.append(left)
+      }
     }
+        
+    return sum
+  }
 }

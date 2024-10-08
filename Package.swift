@@ -4,13 +4,13 @@
 import PackageDescription
 
 let package = Package(
-    name: "Challenges",
-    platforms: [.macOS(.v14)],
-    products: [
-        .executable(name: "Challenges", targets: ["Challenges"])
-    ],
-    targets: [
-        .executableTarget(name: "Challenges"),
-        .testTarget(name: "Challenges-Tests", dependencies: ["Challenges"])
-    ]
+  name: "Challenges",
+  platforms: [.macOS(.v14)],
+  products: [
+    .executable(name: "Challenges", targets: ["Challenges"])
+  ],
+  targets: [
+    .executableTarget(name: "Challenges"),
+    .testTarget(name: "Challenges-Tests", dependencies: ["Challenges"])
+  ]
 )

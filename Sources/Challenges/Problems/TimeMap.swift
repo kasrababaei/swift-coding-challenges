@@ -37,74 +37,74 @@
  */
 
 class TimeMap {
-    private var dict: [String: [(value: String, timestamp: Int)]] = [:]
-    init() {}
+  private var dict: [String: [(value: String, timestamp: Int)]] = [:]
+  init() {}
     
-    func set(_ key: String, _ value: String, _ timestamp: Int) {
-        dict[key, default: []].append((value, timestamp))
-    }
+  func set(_ key: String, _ value: String, _ timestamp: Int) {
+    dict[key, default: []].append((value, timestamp))
+  }
     
-    func get(_ key: String, _ timestamp: Int) -> String {
-        guard let array = dict[key] else { return "" }
+  func get(_ key: String, _ timestamp: Int) -> String {
+    guard let array = dict[key] else { return "" }
         
-        var left = 0
-        var right = array.count - 1
+    var left = 0
+    var right = array.count - 1
         
-        while left <= right {
-            let mid = right + left / 2
+    while left <= right {
+      let mid = right + left / 2
             
-            if timestamp == array[mid].timestamp {
-                return array[mid].value
-            } else if timestamp > array[mid].timestamp {
-                left = mid + 1
-            } else {
-                right = mid - 1
-            }
-        }
-        
-        return right >= 0 ? array[right].value : ""
+      if timestamp == array[mid].timestamp {
+        return array[mid].value
+      } else if timestamp > array[mid].timestamp {
+        left = mid + 1
+      } else {
+        right = mid - 1
+      }
     }
+        
+    return right >= 0 ? array[right].value : ""
+  }
     
-    /*
-    private var dict: [String: LinkedList] = [:]
+  /*
+   private var dict: [String: LinkedList] = [:]
      
-    func set(_ key: String, _ value: String, _ timestamp: Int) {
-        let newHead = LinkedList(nil, value, timestamp)
-        if let prevHead = dict[key] {
-            newHead.next = prevHead
-        }
+   func set(_ key: String, _ value: String, _ timestamp: Int) {
+       let newHead = LinkedList(nil, value, timestamp)
+       if let prevHead = dict[key] {
+           newHead.next = prevHead
+       }
         
-        dict[key] = newHead
-    }
+       dict[key] = newHead
+   }
     
-    func get(_ key: String, _ timestamp: Int) -> String {
-        if let list = dict[key] {
-            var next: LinkedList? = list
+   func get(_ key: String, _ timestamp: Int) -> String {
+       if let list = dict[key] {
+           var next: LinkedList? = list
             
-            while next != nil {
-                if let current = next, timestamp >= current.timestamp {
-                    return current.value
-                }
+           while next != nil {
+               if let current = next, timestamp >= current.timestamp {
+                   return current.value
+               }
                 
-                next = next?.next
-            }
-        }
+               next = next?.next
+           }
+       }
         
-        return ""
-    }
-     */
+       return ""
+   }
+    */
 }
 
 private final class LinkedList {
-    var next: LinkedList?
-    var value: String = ""
-    var timestamp: Int
+  var next: LinkedList?
+  var value: String = ""
+  var timestamp: Int
     
-    init(_ next: LinkedList? = nil, _ value: String, _ timestamp: Int) {
-        self.next = next
-        self.value = value
-        self.timestamp = timestamp
-    }
+  init(_ next: LinkedList? = nil, _ value: String, _ timestamp: Int) {
+    self.next = next
+    self.value = value
+    self.timestamp = timestamp
+  }
 }
 
 /**

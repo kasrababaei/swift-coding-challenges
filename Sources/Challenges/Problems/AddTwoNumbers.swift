@@ -1,6 +1,6 @@
 /*
  
- You are given two non-empty linked lists representing two non-negative integers. 
+ You are given two non-empty linked lists representing two non-negative integers.
  The digits are stored in reverse order, and each of their nodes contains a single digit.
  Add the two numbers and return the sum as a linked list.
 
@@ -28,14 +28,14 @@
  
  */
 enum AddTwoNumbers {
-    nonisolated(unsafe) static var carryOver = 0
+  nonisolated(unsafe) static var carryOver = 0
     
-    static func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
-        if l1 == nil && l2 == nil && carryOver == 0 { return nil }
-        let sum = (l1?.val ?? 0) + (l2?.val ?? 0) + carryOver
-        carryOver = sum / 10
-        return .init(sum % 10, addTwoNumbers(l1?.next, l2?.next))
-    }
+  static func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+    if l1 == nil && l2 == nil && carryOver == 0 { return nil }
+    let sum = (l1?.val ?? 0) + (l2?.val ?? 0) + carryOver
+    carryOver = sum / 10
+    return .init(sum % 10, addTwoNumbers(l1?.next, l2?.next))
+  }
 }
 
 /**
