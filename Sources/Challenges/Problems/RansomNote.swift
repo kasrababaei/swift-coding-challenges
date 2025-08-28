@@ -24,7 +24,28 @@
 
 enum RansomNote {
   static func canConstruct(_ ransomNote: String, _ magazine: String) -> Bool {
-    var array = Array(repeating: 0, count: Int("z".utf8CString[0]) + 1)
+    // Increment by 1 because the value for letter z is 122. Indexing the 122nd-element on an array
+    // of size 122, causes out of range error!
+    var array = Array(repeating: 0, count: Int(Character("z").asciiValue!) + 1)
+    
+    for char in magazine {
+      array[Int(char.asciiValue!)] += 1
+    }
+    
+    for char in ransomNote {
+      let index = Int(char.asciiValue!)
+      guard array[index] != 0 else { return false }
+      array[index] -= 1
+    }
+    return true
+  }
+  
+  static func _canConstruct(_ ransomNote: String, _ magazine: String) -> Bool {
+    var array = Array(
+      repeating: 0,
+      // UTF-8 code unit for the character "z"
+      count: Int("z".utf8CString[0]) + 1
+    )
         
     for char in magazine.utf8CString {
       array[Int(char)] += 1

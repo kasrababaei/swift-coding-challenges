@@ -111,7 +111,7 @@ class LRUCache {
   }
 }
 
-class Node {
+final class Node {
   var key: Int
   var val: Int
   var prev: Node?
