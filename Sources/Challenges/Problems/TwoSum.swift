@@ -31,21 +31,14 @@
 enum TwoSum {
   static func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
     var dict: [Int: Int] = [:]
-    var indices: [Int] = []
-        
-    for (index, element) in nums.enumerated() {
-      dict[index] = element
-            
-      guard dict.count > 1 else { continue }
-            
-      let diff = target - element
-      if let secondIndex = dict.first(where: { $0.value == diff && $0.key != index })?.key {
-        indices = [index, secondIndex]
-        break
+    for (index, number) in nums.enumerated() {
+      if let secondIndex = dict[target - number] {
+        return [index, secondIndex]
       }
+      dict[number] = index
     }
-        
-    return indices
+    
+    return []
   }
     
   static func test() {
