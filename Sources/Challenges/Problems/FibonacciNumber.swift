@@ -30,6 +30,19 @@
 //  0 <= n <= 30
 
 enum FibonacciNumber {
+  static func _fib(_ n: Int) -> Int {
+    if n == 0 { return 0 }
+    if n == 1 { return 1 }
+    var a = 0
+    var b = 1
+    
+    return (2...n).reduce(into: 1) { res, val in
+      res = a + b
+      a = b
+      b = res
+    }
+  }
+  
   static func fib(_ n: Int) -> Int {
     if n == 0 { return 0 }
     if n == 1 { return 1 }
