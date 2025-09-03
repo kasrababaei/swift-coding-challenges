@@ -43,12 +43,14 @@ enum GroupAnagrams {
       return [strs]
     }
     
-    var dict: [[UInt8]: [String]] = [:]
+    var dict: [Int: [String]] = [:]
     
     for word in strs {
-      var index = Array(repeating: UInt8(0), count: Int("z".first!.asciiValue!) + 1)
-      word.forEach { index[Int($0.asciiValue!)] += 1 }
-      dict[index, default: []].append(word)
+      var key = 0
+      // By using overflow operator &+ which truncates the number of available bits
+      // https://docs.swift.org/swift-book/documentation/the-swift-programming-language/advancedoperators/#Overflow-Operators
+      for char in word { key &+= char.hashValue }
+      dict[key, default: []].append(word)
     }
     
     return Array(dict.values)

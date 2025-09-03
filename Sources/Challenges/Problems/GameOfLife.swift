@@ -39,6 +39,7 @@ private extension Array where Element == [Int] {
       .reduce(0, +)
   }
   
+  /// Returns [Moore neighbourhood](https://en.wikipedia.org/wiki/Moore_neighborhood).
   func neighbours(_ row: Int, _ column: Int) -> [Int] {
     [
       cell(row - 1, column - 1),
