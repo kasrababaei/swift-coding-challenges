@@ -22,6 +22,9 @@
 
 struct MajorityElement {
   func majorityElement(_ nums: [Int]) -> Int {
+    // Boyer-Moore Voting Algorithm:
+    // Add +1 when seeing the majority item or -1 for seeing another item.
+    // The sum will be equal to how many times the majority item is seen.
     var value = Int.min
     var count = 0
     
