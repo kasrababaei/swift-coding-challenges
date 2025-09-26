@@ -30,7 +30,8 @@ enum BinarySearch {
     var right = nums.count - 1
     
     while left <= right {
-      let mid = (left + right) / 2
+//      let mid = (left + right) / 2
+      let mid = left + (right - left) / 2 // An alternative for avoiding overflow
       
       if nums[mid] == target {
         return mid
