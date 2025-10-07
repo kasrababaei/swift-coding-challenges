@@ -53,7 +53,7 @@ enum MergeTwoLists {
       tail = tail.next!
     }
         
-    tail.next = list1 == nil ? list2 : list1
+    tail.next = list1 ?? list2
         
     return head.next
   }

@@ -15,7 +15,7 @@ enum TargetSum {
     func dfs(sum: Int, index: Int) -> Int {
       guard index < nums.count else { return sum == target ? 1 : 0 }
       return dfs(sum: sum + nums[index], index: index + 1)
-      + dfs(sum: sum - nums[index], index: index + 1)
+        + dfs(sum: sum - nums[index], index: index + 1)
     }
     
     return dfs(sum: 0, index: 0)

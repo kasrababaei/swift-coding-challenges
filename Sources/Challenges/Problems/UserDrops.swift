@@ -38,21 +38,21 @@
 // user 400 does not have any next action.
 
 private struct Event {
-    let userId: Int
-    let time: Int
-    let action: String
+  let userId: Int
+  let time: Int
+  let action: String
 }
 
 private let input: [Event] = [
-    Event(userId: 100, time: 1000, action: "A"),
-    Event(userId: 200, time: 1000, action: "A"),
-    Event(userId: 100, time: 1100, action: "B"),
-    Event(userId: 200, time: 1150, action: "B"),
-    Event(userId: 200, time: 1200, action: "C"),
-    Event(userId: 100, time: 1200, action: "A"),
-    Event(userId: 300, time: 1500, action: "B"),
-    Event(userId: 300, time: 1600, action: "B"),
-    Event(userId: 400, time: 1700, action: "B"),
+  Event(userId: 100, time: 1000, action: "A"),
+  Event(userId: 200, time: 1000, action: "A"),
+  Event(userId: 100, time: 1100, action: "B"),
+  Event(userId: 200, time: 1150, action: "B"),
+  Event(userId: 200, time: 1200, action: "C"),
+  Event(userId: 100, time: 1200, action: "A"),
+  Event(userId: 300, time: 1500, action: "B"),
+  Event(userId: 300, time: 1600, action: "B"),
+  Event(userId: 400, time: 1700, action: "B")
 ]
 
 enum UserDrops {
